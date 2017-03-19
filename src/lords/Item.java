@@ -3,17 +3,17 @@ package lords;
 public class Item {
 	private String nome;
 	private int vida;
-	private int força;
+	private int forca;
 	private int resistencia;
-	private int preço;
+	private int preco;
 	private int energia;
 	
-	public Item(String nome,int vida,int força,int resistencia,int preço,int energia){
+	public Item(String nome,int vida,int forca,int resistencia,int preco,int energia){
 		this.nome = nome;
 		this.vida = vida;
-		this.força = força;
+		this.forca = forca;
 		this.resistencia = resistencia;
-		this.preço = preço;
+		this.preco = preco;
 		this.energia = energia;
 	}
 	public String getNome() {
@@ -32,12 +32,12 @@ public class Item {
 		this.vida = vida;
 	}
 	
-	public int getForça() {
-		return força;
+	public int getForca() {
+		return forca;
 	}
 	
-	public void setForça(int força) {
-		this.força = força;
+	public void setForca(int forca) {
+		this.forca = forca;
 	}
 	
 	public int getResistencia() {
@@ -48,12 +48,12 @@ public class Item {
 		this.resistencia = resistencia;
 	}
 	
-	public int getPreço() {
-		return preço;
+	public int getPreco() {
+		return preco;
 	}
 	
-	public void setPreço(int preço) {
-		this.preço = preço;
+	public void setPreco(int preco) {
+		this.preco = preco;
 	}
 	
 	public int getEnergia(){
@@ -65,8 +65,8 @@ public class Item {
 	}
 	
 	public String toString() {
-		return "Item [nome=" + nome + ", vida=" + vida + ", força=" + força + ", resistencia=" + resistencia
-				+ ", preço=" + preço + ", energia=" + energia + "]";
+		return "Item [nome=" + nome + ", vida=" + vida + ", força=" + forca + ", resistencia=" + resistencia
+				+ ", preço=" + preco + ", energia=" + energia + "]";
 	}
 	
 	

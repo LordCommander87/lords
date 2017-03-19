@@ -3,12 +3,12 @@ package lords;
 public class Golpe {
 	private String nome;
 	private int dano; 
-	private int stamina;
+	private int energia;
 	
-	public Golpe(String nome, int dano,int stamina) {
+	public Golpe(String nome, int dano,int energia) {
 		this.nome = nome;
 		this.dano = dano;
-		this.stamina = stamina;
+		this.energia = energia;
 	}
 	
 	public String getNome() {
@@ -27,17 +27,17 @@ public class Golpe {
 		this.dano = dano;
 	}
 	
-	public int getStamina() {
-		return stamina;
+	public int getEnergia() {
+		return energia;
 	}
 	
-	public void setStamina(int stamina) {
-		this.stamina = stamina;
+	public void setEnergia(int energia) {
+		this.energia = energia;
 	}
 	
 	public String toString(){
 		return "Golpe: Nome = " + nome + " " + "Dano = " + 
-				dano + " " + "Stamina = " + stamina + ".";
+				dano + " " + "Energia = " + energia + ".";
  	}
 	
 	public int calculaDano(Personagem p){
