@@ -4,11 +4,13 @@ public class Golpe {
 	private String nome;
 	private int dano; 
 	private int energia;
+	private String tipo;
 	
-	public Golpe(String nome, int dano,int energia) {
+	public Golpe(String nome, int dano,int energia, String tipo) {
 		this.nome = nome;
 		this.dano = dano;
 		this.energia = energia;
+		this.tipo = tipo;
 	}
 	
 	public String getNome() {
@@ -35,9 +37,17 @@ public class Golpe {
 		this.energia = energia;
 	}
 	
+	public String getTipo(){
+		return tipo;
+	}
+	
+	public void setTipo(String tipo){
+		this.tipo = tipo;
+	}
+	
 	public String toString(){
 		return "Golpe: Nome = " + nome + " " + "Dano = " + 
-				dano + " " + "Energia = " + energia + ".";
+				dano + " " + "Energia = " + energia + "Tipo = " + tipo + ".";
  	}
 	
 	public int calculaDano(Personagem p){
