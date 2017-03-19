@@ -41,10 +41,10 @@ public class Golpe {
  	}
 	
 	public int calculaDano(Personagem p){
-		return dano = (((p.getForça()/100) * dano + dano) - p.getResistencia());
+		return dano = (((p.getForca()/100) * dano + dano) - p.getResistencia());
 	}
 	
 	public int calculaDano(Monstro m){
-		return dano = (((m.getForça()/100) * dano + dano) - m.getResistencia());
+		return dano = (((m.getForca()/100) * dano + dano) - m.getResistencia());
 	}
 }
