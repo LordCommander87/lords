@@ -60,6 +60,7 @@ public class Personagem {
 	public void reduzVida(int danoCausado){
 		this.vida -= danoCausado;
 	}
+	
 	public void reduzEnergia(int energiaPerdida){
 		this.energia -= energiaPerdida;
 		if(this.energia<0){
