@@ -18,8 +18,8 @@ public class Inventario {
 		this.gits = gits;
 	}
 	
-	public Item remove(){
-		return equipamentos.remove(0);
+	public Item remove(int indice){
+		return equipamentos.remove(indice);
 	}
 	
 	public void add(Item novoItem){
