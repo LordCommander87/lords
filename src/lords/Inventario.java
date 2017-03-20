@@ -10,6 +10,10 @@ public class Inventario {
 		this.gits = gits;
 	}
 	
+	public ArrayList<Item> getEquipamentos(){
+		return equipamentos;
+	}
+	
 	public int getGits(){
 		return gits;
 	}

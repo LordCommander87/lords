@@ -56,13 +56,11 @@ public class Batalha {
 
 	//metodos para batalha
 	public String golpearMonstro(Golpe golpe, int iMonstro){
-		//monstros.get(iMonstro).reduzVida(Golpe.calculaDano(protagonista));
-		//protagonista.reduzEnergia(Golpe.getEnergia());
-		if(protagonista.getEnergia()<2){
+		if(protagonista.getEnergia()<golpe.getEnergia()){
 			return "Energia insuficiente";
 		}else{
-			monstros.get(iMonstro).reduzVida(4);
-			protagonista.reduzEnergia(4);
+			monstros.get(iMonstro).reduzVida(golpe.calculaDano(protagonista));
+			protagonista.reduzEnergia(golpe.getEnergia());
 			if(monstros.get(iMonstro).getVida()<1){
 				monstros.remove(iMonstro);
 				if(monstros.size()==0){
@@ -75,13 +73,11 @@ public class Batalha {
 	}
 	
 	public String golpearPersonagem(Golpe golpe, int iMonstro){
-		//protagonista.reduzVida(Golpe.calculaDano(protagonista));
-		//monstros.get(iMonstro).reduzEnergia(Golpe.getEnergia());
-		if(monstros.get(iMonstro).getEnergia()<2){
+		if(monstros.get(iMonstro).getEnergia()<golpe.getEnergia()){
 			return "Falhou";
 		}else{
-			protagonista.reduzVida(4);
-			monstros.get(iMonstro).reduzEnergia(4);
+			protagonista.reduzVida(golpe.calculaDano(monstros.get(iMonstro)));
+			monstros.get(iMonstro).reduzEnergia(golpe.getEnergia());
 			if(protagonista.getVida()<1){
 				return fimDaBatalha(1);
 			}

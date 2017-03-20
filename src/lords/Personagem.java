@@ -1,4 +1,5 @@
 package lords;
+import java.util.ArrayList;
 
 public class Personagem {
 	//atributos do personagem
@@ -7,6 +8,13 @@ public class Personagem {
 	private int forca;
 	private int resistencia;
 	private int energia;
+	private ArrayList<Golpe> golpes;
+	//equipamento
+	private Item elmo;
+	private Item armadura;
+	private Item maoDireita;
+	private Item maoEsquerda;
+	private Inventario mochila;
 	
 	//construtor
 	public Personagem(String nome, int vida, int forca, int resistencia, int energia) {
@@ -16,8 +24,196 @@ public class Personagem {
 		this.forca = forca;
 		this.resistencia = resistencia;
 		this.energia = energia;
+		golpes = new ArrayList<Golpe>();
+		golpes.add(new Golpe("Arranhão",1,1,"espada"));
+		mochila = new Inventario(10);
+		mochila.add(new Item("Pano velho",1,0,1,0,"armadura",0));
+		mochila.add(new Item("Espada velha",0,1,0,1,"umaMao",0));
+		mochila.add(new Item("Arco velho",0,1,0,1,"duasMaos",0));
+	}
+	//metodos de equipo
+	public void desequipar(String local){
+		switch(local){
+			case "elmo":
+				if(this.elmo!=null){
+					addItemMochila(new Item(this.elmo));
+					this.vida -= this.elmo.getVida();
+					this.forca -= this.elmo.getForca();
+					this.resistencia -= this.elmo.getResistencia();
+					this.energia -= this.elmo.getEnergia();
+					this.elmo = null;
+				}break;
+			case "armadura":
+				if(this.armadura!=null){
+					addItemMochila(new Item(this.armadura));
+					this.vida -= this.armadura.getVida();
+					this.forca -= this.armadura.getForca();
+					this.resistencia -= this.armadura.getResistencia();
+					this.energia -= this.armadura.getEnergia();
+					this.armadura = null;
+				}break;
+			case "maoEsquerda":
+				if(this.maoEsquerda!=null){
+					addItemMochila(new Item(this.maoEsquerda));
+					this.vida -= this.maoEsquerda.getVida();
+					this.forca -= this.maoEsquerda.getForca();
+					this.resistencia -= this.maoEsquerda.getResistencia();
+					this.energia -= this.maoEsquerda.getEnergia();
+					this.maoEsquerda = null;
+				}break;
+			case "maoDireita":
+				if(this.maoDireita!=null){
+					addItemMochila(new Item(this.maoDireita));
+					this.vida -= this.maoDireita.getVida();
+					this.forca -= this.maoDireita.getForca();
+					this.resistencia -= this.maoDireita.getResistencia();
+					this.energia -= this.maoDireita.getEnergia();
+					this.maoDireita = null;
+				}break;
+			case "duasMaos":
+				desequipar("maoEsquerda");
+				desequipar("maoDireita");
+				mochila.remove(mochila.size()-1);
+		}
 	}
 	
+	public void setElmo(int iEquipamento){
+		if(iEquipamento==-1){
+			desequipar("elmo");
+			this.elmo=null;
+		}else{
+			Item elmo = mochila.remove(iEquipamento);
+			if(elmo.getTipo().equals("elmo")){
+				desequipar("elmo");
+				this.elmo = elmo;
+				this.vida += this.elmo.getVida();
+				this.forca += this.elmo.getForca();
+				this.resistencia += this.elmo.getResistencia();
+				this.energia += this.elmo.getEnergia();
+			}
+		}
+	}
+	public void setArmadura(int iEquipamento){
+		if(iEquipamento==-1){
+			desequipar("armadura");
+			this.armadura=null;
+		}else{
+			Item armadura = mochila.remove(iEquipamento);
+			if(armadura.getTipo().equals("armadura")){
+				desequipar("armadura");
+				this.armadura = armadura;
+				this.vida += this.armadura.getVida();
+				this.forca += this.armadura.getForca();
+				this.resistencia += this.armadura.getResistencia();
+				this.energia += this.armadura.getEnergia();
+			}
+		}
+	}
+	public void setMaoDireita(int iEquipamento){
+		if(iEquipamento==-1){
+			if(this.maoDireita.getTipo().equals("umaMao")){desequipar("maoDireita");}
+			else{desequipar("duasMaos");}
+		}else{
+			Item maoDireita = mochila.remove(iEquipamento);
+			if(maoDireita.getTipo().equals("umaMao")){
+				if(this.maoDireita!=null && this.maoDireita.getTipo().equals("duasMaos")){
+					this.vida += this.maoDireita.getVida();
+					this.forca += this.maoDireita.getForca();
+					this.resistencia += this.maoDireita.getResistencia();
+					this.energia += this.maoDireita.getEnergia();
+					desequipar("maoEsquerda");
+					mochila.remove(mochila.size()-1);
+				}
+				desequipar("maoDireita");
+				this.maoDireita = maoDireita;
+				this.vida += this.maoDireita.getVida();
+				this.forca += this.maoDireita.getForca();
+				this.resistencia += this.maoDireita.getResistencia();
+				this.energia += this.maoDireita.getEnergia();
+			}
+			if(maoDireita.getTipo().equals("duasMaos")){
+				if(this.maoDireita==this.maoEsquerda){
+					if(this.maoDireita==null);
+					else{
+						this.vida += this.maoDireita.getVida();
+						this.forca += this.maoDireita.getForca();
+						this.resistencia += this.maoDireita.getResistencia();
+						this.energia += this.maoDireita.getEnergia();
+						desequipar("duasMaos");
+					}
+				}
+				desequipar("duasMaos");
+				this.maoDireita = maoDireita;
+				this.maoEsquerda = maoDireita;
+				this.vida += this.maoDireita.getVida();
+				this.forca += this.maoDireita.getForca();
+				this.resistencia += this.maoDireita.getResistencia();
+				this.energia += this.maoDireita.getEnergia();
+			}
+		}
+	}
+	
+	public void setMaoEsquerda(int iEquipamento){
+		if(iEquipamento==-1){
+			if(this.maoEsquerda.getTipo().equals("umaMao")){desequipar("maoEsquerda");}
+			else{desequipar("duasMaos");}
+		}else{
+			Item maoEsquerda = mochila.remove(iEquipamento);
+			if(maoEsquerda.getTipo().equals("umaMao")){
+				if(this.maoEsquerda!=null && this.maoDireita.getTipo().equals("duasMaos")){
+					this.vida += this.maoEsquerda.getVida();
+					this.forca += this.maoEsquerda.getForca();
+					this.resistencia += this.maoEsquerda.getResistencia();
+					this.energia += this.maoEsquerda.getEnergia();
+					desequipar("maoDireita");
+					mochila.remove(mochila.size()-1);
+				}
+				desequipar("maoEsquerda");
+				this.maoEsquerda = maoEsquerda;
+				this.vida += this.maoEsquerda.getVida();
+				this.forca += this.maoEsquerda.getForca();
+				this.resistencia += this.maoEsquerda.getResistencia();
+				this.energia += this.maoEsquerda.getEnergia();
+			}
+			if(maoEsquerda.getTipo().equals("duasMaos")){
+				if(this.maoEsquerda==this.maoDireita){
+					if(this.maoEsquerda==null);
+					else{
+						this.vida += this.maoEsquerda.getVida();
+						this.forca += this.maoEsquerda.getForca();
+						this.resistencia += this.maoEsquerda.getResistencia();
+						this.energia += this.maoEsquerda.getEnergia();
+						desequipar("duasMaos");
+					}
+				}
+				this.maoEsquerda = maoEsquerda;
+				this.maoDireita = maoEsquerda;
+				this.vida += this.maoEsquerda.getVida();
+				this.forca += this.maoEsquerda.getForca();
+				this.resistencia += this.maoEsquerda.getResistencia();
+				this.energia += this.maoEsquerda.getEnergia();
+			}
+		}
+	}
+	
+	public ArrayList<Golpe> getGolpes() {
+		return golpes;
+	}
+	public Item getElmo() {
+		return elmo;
+	}
+	public Item getArmadura() {
+		return armadura;
+	}
+	public Item getMaoDireita() {
+		return maoDireita;
+	}
+	public Item getMaoEsquerda() {
+		return maoEsquerda;
+	}
+	public Inventario getMochila() {
+		return mochila;
+	}
 	//funcoes padrao da classe
 	public String getNome(){
 		return nome;
@@ -53,7 +249,8 @@ public class Personagem {
 	@Override
 	public String toString() {
 		return "Personagem [nome=" + nome + ", vida=" + vida + ", forca=" + forca + ", resistencia=" + resistencia
-				+ ", energia=" + energia + "]";
+				+ ", energia=" + energia + ", golpes=" + golpes + ", elmo=" + elmo + ", armadura=" + armadura
+				+ ", maoDireita=" + maoDireita + ", maoEsquerda=" + maoEsquerda + ", mochila=" + mochila + "]";
 	}
 	
 	//metodos para batalha
@@ -68,5 +265,28 @@ public class Personagem {
 		}
 	}
 	
+	public void addGolpe(Golpe golpe){
+		this.golpes.add(golpe);
+	}
+	
+	public void addItemMochila(Item item){
+		this.mochila.add(item);
+	}
+	
+	public void removeItemMochila(int indice){
+		this.mochila.remove(indice);
+	}
+	
+	public void addGits(int gits){
+		int lucro = this.mochila.getGits();
+		lucro += gits;
+		this.mochila.setGits(lucro);
+	}
+	
+	public void removeGits(int gits){
+		int preju = this.mochila.getGits();
+		preju -= gits;
+		this.mochila.setGits(preju);
+	}
 	//fim do Personagem
 }

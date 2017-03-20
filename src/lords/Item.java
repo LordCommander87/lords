@@ -7,14 +7,33 @@ public class Item {
 	private int resistencia;
 	private int preco;
 	private int energia;
+	private String tipo;
 	
-	public Item(String nome,int vida,int forca,int resistencia,int preco,int energia){
+	public Item(String nome,int vida,int forca,int resistencia,int energia,String tipo,int preco){
 		this.nome = nome;
 		this.vida = vida;
 		this.forca = forca;
 		this.resistencia = resistencia;
 		this.preco = preco;
 		this.energia = energia;
+		this.tipo= tipo;
+	}
+	
+	public Item(Item item){
+		this.nome = item.getNome();
+		this.vida = item.getVida();
+		this.forca = item.getForca();
+		this.resistencia = item.getResistencia();
+		this.preco = item.getPreco();
+		this.energia = item.getPreco();
+		this.tipo = item.getTipo();
+	}
+	
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
 	}
 	public String getNome() {
 		return nome;
@@ -66,7 +85,7 @@ public class Item {
 	
 	public String toString() {
 		return "Item [nome=" + nome + ", vida=" + vida + ", força=" + forca + ", resistencia=" + resistencia
-				+ ", preço=" + preco + ", energia=" + energia + "]";
+				+ ", preço=" + preco + ", energia=" + energia + ", tipo=" + tipo + "]";
 	}
 	
 	

@@ -46,8 +46,8 @@ public class Golpe {
 	}
 	
 	public String toString(){
-		return "Golpe: Nome = " + nome + " " + "Dano = " + 
-				dano + " " + "Energia = " + energia + "Tipo = " + tipo + ".";
+		return "[Golpe: Nome = " + nome + ", " + "Dano = " + 
+				dano + ", " + "Energia = " + energia + ", " +"Tipo = " + tipo + "]";
  	}
 	
 	public int calculaDano(Personagem p){
