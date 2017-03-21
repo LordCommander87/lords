@@ -27,9 +27,9 @@ public class Personagem {
 		golpes = new ArrayList<Golpe>();
 		golpes.add(new Golpe("Arranhão",1,1,"espada"));
 		mochila = new Inventario(10);
-		mochila.add(new Item("Pano velho",1,0,1,0,"armadura",0));
-		mochila.add(new Item("Espada velha",0,1,0,1,"umaMao",0));
-		mochila.add(new Item("Arco velho",0,1,0,1,"duasMaos",0));
+		mochila.add(new Item("Pano velho",1,0,1,0,"","armadura",0));
+		mochila.add(new Item("Espada velha",0,1,0,1,"espada","umaMao",0));
+		mochila.add(new Item("Arco velho",0,1,0,1,"arco","duasMaos",0));
 	}
 	//metodos de equipo
 	public void desequipar(String local){
@@ -77,7 +77,7 @@ public class Personagem {
 		}
 	}
 	
-	public void setElmo(int iEquipamento){
+	public void equiparElmo(int iEquipamento){
 		if(iEquipamento==-1){
 			desequipar("elmo");
 			this.elmo=null;
@@ -93,7 +93,7 @@ public class Personagem {
 			}
 		}
 	}
-	public void setArmadura(int iEquipamento){
+	public void equiparArmadura(int iEquipamento){
 		if(iEquipamento==-1){
 			desequipar("armadura");
 			this.armadura=null;
@@ -109,14 +109,14 @@ public class Personagem {
 			}
 		}
 	}
-	public void setMaoDireita(int iEquipamento){
+	public void equiparMaoDireita(int iEquipamento){
 		if(iEquipamento==-1){
-			if(this.maoDireita.getTipo().equals("umaMao")){desequipar("maoDireita");}
+			if(this.maoDireita.getMao().equals("umaMao")){desequipar("maoDireita");}
 			else{desequipar("duasMaos");}
 		}else{
 			Item maoDireita = mochila.remove(iEquipamento);
-			if(maoDireita.getTipo().equals("umaMao")){
-				if(this.maoDireita!=null && this.maoDireita.getTipo().equals("duasMaos")){
+			if(maoDireita.getMao().equals("umaMao")){
+				if(this.maoDireita!=null && this.maoDireita.getMao().equals("duasMaos")){
 					this.vida += this.maoDireita.getVida();
 					this.forca += this.maoDireita.getForca();
 					this.resistencia += this.maoDireita.getResistencia();
@@ -131,7 +131,7 @@ public class Personagem {
 				this.resistencia += this.maoDireita.getResistencia();
 				this.energia += this.maoDireita.getEnergia();
 			}
-			if(maoDireita.getTipo().equals("duasMaos")){
+			if(maoDireita.getMao().equals("duasMaos")){
 				if(this.maoDireita==this.maoEsquerda){
 					if(this.maoDireita==null);
 					else{
@@ -152,15 +152,14 @@ public class Personagem {
 			}
 		}
 	}
-	
-	public void setMaoEsquerda(int iEquipamento){
+	public void equiparMaoEsquerda(int iEquipamento){
 		if(iEquipamento==-1){
-			if(this.maoEsquerda.getTipo().equals("umaMao")){desequipar("maoEsquerda");}
+			if(this.maoEsquerda.getMao().equals("umaMao")){desequipar("maoEsquerda");}
 			else{desequipar("duasMaos");}
 		}else{
 			Item maoEsquerda = mochila.remove(iEquipamento);
-			if(maoEsquerda.getTipo().equals("umaMao")){
-				if(this.maoEsquerda!=null && this.maoDireita.getTipo().equals("duasMaos")){
+			if(maoEsquerda.getMao().equals("umaMao")){
+				if(this.maoEsquerda!=null && this.maoDireita.getMao().equals("duasMaos")){
 					this.vida += this.maoEsquerda.getVida();
 					this.forca += this.maoEsquerda.getForca();
 					this.resistencia += this.maoEsquerda.getResistencia();
@@ -175,7 +174,7 @@ public class Personagem {
 				this.resistencia += this.maoEsquerda.getResistencia();
 				this.energia += this.maoEsquerda.getEnergia();
 			}
-			if(maoEsquerda.getTipo().equals("duasMaos")){
+			if(maoEsquerda.getMao().equals("duasMaos")){
 				if(this.maoEsquerda==this.maoDireita){
 					if(this.maoEsquerda==null);
 					else{
@@ -254,6 +253,53 @@ public class Personagem {
 	}
 	
 	//metodos para batalha
+	public ArrayList<Golpe> golpesAtuais(){
+		int i;
+		ArrayList<Golpe> golpesAtuais = new ArrayList<Golpe>();
+		
+		if(this.maoDireita!=null && this.maoDireita.getMao().equals("duasMaos")){
+			for(i=0;i<this.golpes.size();i++){
+				if(golpes.get(i).getTipo().equals(this.maoDireita.getTipo())){
+					golpesAtuais.add(golpes.get(i));
+				}
+			}
+		}
+		else{
+			if(maoEsquerda==null){
+				if(maoDireita==null);
+				else{
+					for(i=0;i<this.golpes.size();i++){
+						if(golpes.get(i).getTipo().equals(this.maoDireita.getTipo())){
+							golpesAtuais.add(golpes.get(i));
+						}
+					}
+				}
+			}
+			else{
+				if(maoDireita==null){
+					for(i=0;i<this.golpes.size();i++){
+						if(golpes.get(i).getTipo().equals(this.maoEsquerda.getTipo())){
+							golpesAtuais.add(golpes.get(i));
+						}
+					}
+				}else{
+					for(i=0;i<this.golpes.size();i++){
+						if(golpes.get(i).getTipo().equals(this.maoDireita.getTipo())){
+							golpesAtuais.add(golpes.get(i));
+						}
+					}for(i=0;i<this.golpes.size();i++){
+						if(golpes.get(i).getTipo().equals(this.maoEsquerda.getTipo()) && !golpes.get(i).getTipo().equals(this.maoDireita.getTipo())){
+							golpesAtuais.add(golpes.get(i));
+						}
+					}
+				}
+			}
+			
+		}
+		
+		return golpesAtuais;
+	}
+	
 	public void reduzVida(int danoCausado){
 		this.vida -= danoCausado;
 	}

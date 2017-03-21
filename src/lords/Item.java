@@ -8,15 +8,17 @@ public class Item {
 	private int preco;
 	private int energia;
 	private String tipo;
+	private String mao;
 	
-	public Item(String nome,int vida,int forca,int resistencia,int energia,String tipo,int preco){
+	public Item(String nome,int vida,int forca,int resistencia,int energia,String tipo,String mao,int preco){
 		this.nome = nome;
 		this.vida = vida;
 		this.forca = forca;
 		this.resistencia = resistencia;
 		this.preco = preco;
 		this.energia = energia;
-		this.tipo= tipo;
+		this.tipo = tipo;
+		this.mao = mao;
 	}
 	
 	public Item(Item item){
@@ -32,9 +34,19 @@ public class Item {
 	public String getTipo() {
 		return tipo;
 	}
+	
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+	
+	public String getMao() {
+		return mao;
+	}
+
+	public void setMao(String mao) {
+		this.mao = mao;
+	}
+
 	public String getNome() {
 		return nome;
 	}

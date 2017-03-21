@@ -87,7 +87,7 @@ public class Batalha {
 	
 	public String fimDaBatalha(int vencendor){
 		if(vencendor==0)return "Você ganhou";
-		return "Voçê foi derrotado";
+		return "Você foi derrotado";
 	}
 	
 	//fim da Batalha
