@@ -29,7 +29,7 @@ public class Splash extends JFrame{
 	    setVisible(true);
 	    
 	    try {
-			Thread.sleep (3000);
+			Thread.sleep (4000);
 	    }
 		catch (InterruptedException ex) {}
 	    	dispose();

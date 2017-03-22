@@ -55,11 +55,12 @@ public class Menu extends JFrame implements ActionListener{
 	{
 		
 		if (acesso.getSource() == btStart) {
-			System.out.println("Botão iniciar pressionado!");
+			new Jogo();
+			super.dispose();
 	  }
 	   
 		if (acesso.getSource() == btCredits) {
-			System.out.println("Matheus Damasceno & Mario Matheus!");
+			new Creditos();
 	  }
 	  
 		if (acesso.getSource() == btExit) {
