@@ -1,4 +1,5 @@
 import guardians.Splash;
+//import lords.Personagem;
 
 public class App {
 	

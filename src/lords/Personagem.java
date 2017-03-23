@@ -27,7 +27,7 @@ public class Personagem {
 		golpes = new ArrayList<Golpe>();
 		golpes.add(new Golpe("Arranhão",1,1,"espada"));
 		mochila = new Inventario(10);
-		mochila.add(new Item("Pano velho",1,0,1,0,"","armadura",0));
+		mochila.add(new Item("Pano velho",1,0,1,0,"armadura","",0));
 		mochila.add(new Item("Espada velha",0,1,0,1,"espada","umaMao",0));
 		mochila.add(new Item("Arco velho",0,1,0,1,"arco","duasMaos",0));
 	}
