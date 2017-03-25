@@ -25,7 +25,10 @@ public class Splash extends JFrame{
 	    lbSplash.setBounds(0,0,700,300);
      
 	    add(lbSplash);
-	    
+
+	}
+	
+	public void iniciar_jogo(){
 	    setVisible(true);
 	    
 	    try {
