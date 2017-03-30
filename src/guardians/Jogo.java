@@ -8,7 +8,9 @@ public class Jogo extends JFrame implements KeyListener
 {
     private JLabel lbBackGround;
     private JLabel lbPerson;
+    private JLabel lbInventario;
     private ImageIcon imFundo;
+    private ImageIcon imInventario;
     private ImageIcon persFrente2 = criarImageIcon("../imgs/protagonista/costa2.png","costa2");
 	private ImageIcon persFrente1 = criarImageIcon("../imgs/protagonista/costa1.png","costa1");
 	private ImageIcon persFrente3 = criarImageIcon("../imgs/protagonista/costa3.png","costa3");
@@ -25,7 +27,7 @@ public class Jogo extends JFrame implements KeyListener
 	private ImageIcon persEsquerda1 = criarImageIcon("../imgs/protagonista/esquerda1.png","esquerda1");
 	private ImageIcon persEsquerda3 = criarImageIcon("../imgs/protagonista/esquerda3.png","esquerda3");
 
-	private int flagFrente=0,flagEsquerda=0,flagDireita=0,flagBaixo=0;
+	private int flagFrente=0,flagEsquerda=0,flagDireita=0,flagBaixo=0,flagInventario=0;
     
     public Jogo()
     {
@@ -43,6 +45,10 @@ public class Jogo extends JFrame implements KeyListener
        lbPerson = new JLabel(persFrente2);
        lbPerson.setBounds(0,0,640,480);
        add(lbPerson);
+       
+       imInventario = criarImageIcon("../imgs/telaInventario.png","Inventario");
+       lbInventario = new JLabel(imInventario);
+       lbInventario.setBounds(225,-10,640,480);
        
        imFundo = criarImageIcon("../imgs/mapateste.png","BackGround");
        lbBackGround = new JLabel(imFundo);
@@ -210,6 +216,20 @@ public class Jogo extends JFrame implements KeyListener
 				flagFrente=0;
 				flagEsquerda=0;
 				flagBaixo++;
+				break;
+			}
+			break;
+		case KeyEvent.VK_I:
+			switch(flagInventario){
+			case 0:
+				remove(lbBackGround);
+				add(lbInventario);
+				add(lbBackGround);
+				flagInventario++;
+				break;
+			case 1:
+				remove(lbInventario);
+				flagInventario++;
 				break;
 			}
 			break;
