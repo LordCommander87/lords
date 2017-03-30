@@ -9,8 +9,12 @@ public class Jogo extends JFrame implements KeyListener
     private JLabel lbBackGround;
     private JLabel lbPerson;
     private JLabel lbInventario;
+    private JLabel lbGolpes;
+    
     private ImageIcon imFundo;
     private ImageIcon imInventario;
+    private ImageIcon imGolpes;
+    
     private ImageIcon persFrente2 = criarImageIcon("../imgs/protagonista/costa2.png","costa2");
 	private ImageIcon persFrente1 = criarImageIcon("../imgs/protagonista/costa1.png","costa1");
 	private ImageIcon persFrente3 = criarImageIcon("../imgs/protagonista/costa3.png","costa3");
@@ -27,7 +31,7 @@ public class Jogo extends JFrame implements KeyListener
 	private ImageIcon persEsquerda1 = criarImageIcon("../imgs/protagonista/esquerda1.png","esquerda1");
 	private ImageIcon persEsquerda3 = criarImageIcon("../imgs/protagonista/esquerda3.png","esquerda3");
 
-	private int flagFrente=0,flagEsquerda=0,flagDireita=0,flagBaixo=0,flagInventario=0;
+	private int flagFrente=0,flagEsquerda=0,flagDireita=0,flagBaixo=0,flagInventario=0,flagGolpes=0;
     
     public Jogo()
     {
@@ -50,6 +54,10 @@ public class Jogo extends JFrame implements KeyListener
        lbInventario = new JLabel(imInventario);
        lbInventario.setBounds(225,-10,640,480);
        
+       imGolpes = criarImageIcon("../imgs/telaGolpes.png","Golpes");
+       lbGolpes = new JLabel(imGolpes);
+       lbGolpes.setBounds(-230, -10, 640, 480);
+       
        imFundo = criarImageIcon("../imgs/mapateste.png","BackGround");
        lbBackGround = new JLabel(imFundo);
        lbBackGround.setBounds(0,0,640,480);
@@ -60,165 +68,165 @@ public class Jogo extends JFrame implements KeyListener
     
     public void keyPressed(KeyEvent e){
     	switch(e.getKeyCode()){
-		case KeyEvent.VK_W:
-			lbPerson.setLocation((lbPerson.getX())+0,(lbPerson.getY())-5);
-			switch(flagFrente){
-			case 0:
-				lbPerson.setIcon(persFrente3);
-				flagFrente++;
-				flagEsquerda=0;
-				flagDireita=0;
-				flagBaixo=0;
-				break;
-			case 5:
-				lbPerson.setIcon(persFrente2);
-				flagFrente++;
-				flagEsquerda=0;
-				flagDireita=0;
-				flagBaixo=0;
-				break;
-			case 10:
-				lbPerson.setIcon(persFrente1);
-				flagFrente++;
-				flagEsquerda=0;
-				flagDireita=0;
-				flagBaixo=0;
-				break;
-			case 15:
-				lbPerson.setIcon(persFrente2);
-				flagFrente=0;
-				flagEsquerda=0;
-				flagDireita=0;
-				flagBaixo=0;
-				break;
-			default:
-				flagFrente++;
-				flagEsquerda=0;
-				flagDireita=0;
-				flagBaixo=0;
-				break;
-			}
-			break;
-			
-		case KeyEvent.VK_D:
-			lbPerson.setLocation((lbPerson.getX())+5,(lbPerson.getY())+0);
-			switch(flagDireita){
-			case 0:
-				lbPerson.setIcon(persDireita3);
-				flagDireita++;
-				flagFrente=0;
-				flagEsquerda=0;
-				flagBaixo=0;
-				break;
-			case 5:
-				lbPerson.setIcon(persDireita2);
-				flagDireita++;
-				flagFrente=0;
-				flagEsquerda=0;
-				flagBaixo=0;
-				break;
-			case 10:
-				lbPerson.setIcon(persDireita1);
-				flagDireita++;
-				flagFrente=0;
-				flagEsquerda=0;
-				flagBaixo=0;
-				break;
-			case 15:
-				lbPerson.setIcon(persDireita2);
-				flagDireita=0;
-				flagFrente=0;
-				flagEsquerda=0;
-				flagBaixo=0;
-				break;
-			default:
-				flagDireita++;
-				flagFrente=0;
-				flagEsquerda=0;
-				flagBaixo=0;
-				break;
-			}
-			break;
-			
-		case KeyEvent.VK_A:
-			lbPerson.setLocation((lbPerson.getX())-5,(lbPerson.getY())+0);
-			switch(flagEsquerda){
-			case 0:
-				lbPerson.setIcon(persEsquerda3);
-				flagDireita=0;
-				flagFrente=0;
-				flagEsquerda++;
-				flagBaixo=0;
-				break;
-			case 5:
-				lbPerson.setIcon(persEsquerda2);
-				flagDireita=0;
-				flagFrente=0;
-				flagEsquerda++;
-				flagBaixo=0;
-				break;
-			case 10:
-				lbPerson.setIcon(persEsquerda1);
-				flagDireita=0;
-				flagFrente=0;
-				flagEsquerda++;
-				flagBaixo=0;
-				break;
-			case 15:
-				lbPerson.setIcon(persEsquerda2);
-				flagDireita=0;
-				flagFrente=0;
-				flagEsquerda=0;
-				flagBaixo=0;
-				break;
-			default:
-				flagDireita=0;
-				flagFrente=0;
-				flagEsquerda++;
-				flagBaixo=0;
-				break;
-			}
-			break;
-			
-		case KeyEvent.VK_S:
-			lbPerson.setLocation((lbPerson.getX())+0,(lbPerson.getY())+5);
-			switch(flagBaixo){
-			case 0:
-				lbPerson.setIcon(persBaixo3);
-				flagDireita=0;
-				flagFrente=0;
-				flagEsquerda=0;
-				flagBaixo++;
-				break;
-			case 5:
-				lbPerson.setIcon(persBaixo2);
-				flagDireita=0;
-				flagFrente=0;
-				flagEsquerda=0;
-				flagBaixo++;
-				break;
-			case 10:
-				lbPerson.setIcon(persBaixo1);
-				flagDireita=0;
-				flagFrente=0;
-				flagEsquerda=0;
-				flagBaixo++;
-				break;
-			case 15:
-				lbPerson.setIcon(persBaixo2);
-				flagDireita=0;
-				flagFrente=0;
-				flagEsquerda=0;
-				flagBaixo=0;
-				break;
-			default:
-				flagDireita=0;
-				flagFrente=0;
-				flagEsquerda=0;
-				flagBaixo++;
-				break;
-			}
-			break;
+        case KeyEvent.VK_W:
+            lbBackGround.setLocation((lbBackGround.getX())+0,(lbBackGround.getY())+5);
+            switch(flagFrente){
+            case 0:
+                lbPerson.setIcon(persFrente3);
+                flagFrente++;
+                flagEsquerda=0;
+                flagDireita=0;
+                flagBaixo=0;
+                break;
+            case 5:
+                lbPerson.setIcon(persFrente2);
+                flagFrente++;
+                flagEsquerda=0;
+                flagDireita=0;
+                flagBaixo=0;
+                break;
+            case 10:
+                lbPerson.setIcon(persFrente1);
+                flagFrente++;
+                flagEsquerda=0;
+                flagDireita=0;
+                flagBaixo=0;
+                break;
+            case 15:
+                lbPerson.setIcon(persFrente2);
+                flagFrente=0;
+                flagEsquerda=0;
+                flagDireita=0;
+                flagBaixo=0;
+                break;
+            default:
+                flagFrente++;
+                flagEsquerda=0;
+                flagDireita=0;
+                flagBaixo=0;
+                break;
+            }
+            break;
+            
+        case KeyEvent.VK_D:
+            lbBackGround.setLocation((lbBackGround.getX())-5,(lbBackGround.getY())+0);
+            switch(flagDireita){
+            case 0:
+                lbPerson.setIcon(persDireita3);
+                flagDireita++;
+                flagFrente=0;
+                flagEsquerda=0;
+                flagBaixo=0;
+                break;
+            case 5:
+                lbPerson.setIcon(persDireita2);
+                flagDireita++;
+                flagFrente=0;
+                flagEsquerda=0;
+                flagBaixo=0;
+                break;
+            case 10:
+                lbPerson.setIcon(persDireita1);
+                flagDireita++;
+                flagFrente=0;
+                flagEsquerda=0;
+                flagBaixo=0;
+                break;
+            case 15:
+                lbPerson.setIcon(persDireita2);
+                flagDireita=0;
+                flagFrente=0;
+                flagEsquerda=0;
+                flagBaixo=0;
+                break;
+            default:
+                flagDireita++;
+                flagFrente=0;
+                flagEsquerda=0;
+                flagBaixo=0;
+                break;
+            }
+            break;
+            
+        case KeyEvent.VK_A:
+            lbBackGround.setLocation((lbBackGround.getX())+5,(lbBackGround.getY())+0);
+            switch(flagEsquerda){
+            case 0:
+                lbPerson.setIcon(persEsquerda3);
+                flagDireita=0;
+                flagFrente=0;
+                flagEsquerda++;
+                flagBaixo=0;
+                break;
+            case 5:
+                lbPerson.setIcon(persEsquerda2);
+                flagDireita=0;
+                flagFrente=0;
+                flagEsquerda++;
+                flagBaixo=0;
+                break;
+            case 10:
+                lbPerson.setIcon(persEsquerda1);
+                flagDireita=0;
+                flagFrente=0;
+                flagEsquerda++;
+                flagBaixo=0;
+                break;
+            case 15:
+                lbPerson.setIcon(persEsquerda2);
+                flagDireita=0;
+                flagFrente=0;
+                flagEsquerda=0;
+                flagBaixo=0;
+                break;
+            default:
+                flagDireita=0;
+                flagFrente=0;
+                flagEsquerda++;
+                flagBaixo=0;
+                break;
+            }
+            break;
+            
+        case KeyEvent.VK_S:
+            lbBackGround.setLocation((lbBackGround.getX())+0,(lbBackGround.getY())-5);
+            switch(flagBaixo){
+            case 0:
+                lbPerson.setIcon(persBaixo3);
+                flagDireita=0;
+                flagFrente=0;
+                flagEsquerda=0;
+                flagBaixo++;
+                break;
+            case 5:
+                lbPerson.setIcon(persBaixo2);
+                flagDireita=0;
+                flagFrente=0;
+                flagEsquerda=0;
+                flagBaixo++;
+                break;
+            case 10:
+                lbPerson.setIcon(persBaixo1);
+                flagDireita=0;
+                flagFrente=0;
+                flagEsquerda=0;
+                flagBaixo++;
+                break;
+            case 15:
+                lbPerson.setIcon(persBaixo2);
+                flagDireita=0;
+                flagFrente=0;
+                flagEsquerda=0;
+                flagBaixo=0;
+                break;
+            default:
+                flagDireita=0;
+                flagFrente=0;
+                flagEsquerda=0;
+                flagBaixo++;
+                break;
+            }
+            break;
 		case KeyEvent.VK_I:
 			switch(flagInventario){
 			case 0:
@@ -229,7 +237,21 @@ public class Jogo extends JFrame implements KeyListener
 				break;
 			case 1:
 				remove(lbInventario);
-				flagInventario++;
+				flagInventario=0;
+				break;
+			}
+			break;
+		case KeyEvent.VK_G:
+			switch(flagGolpes){
+			case 0:
+				remove(lbBackGround);
+				add(lbGolpes);
+				add(lbBackGround);
+				flagGolpes++;
+				break;
+			case 1:
+				remove(lbGolpes);
+				flagGolpes=0;
 				break;
 			}
 			break;
