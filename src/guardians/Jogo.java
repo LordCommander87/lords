@@ -233,10 +233,12 @@ public class Jogo extends JFrame implements KeyListener
 				remove(lbBackGround);
 				add(lbInventario);
 				add(lbBackGround);
+				SwingUtilities.updateComponentTreeUI(this);
 				flagInventario++;
 				break;
 			case 1:
 				remove(lbInventario);
+				SwingUtilities.updateComponentTreeUI(this);
 				flagInventario=0;
 				break;
 			}
@@ -247,10 +249,12 @@ public class Jogo extends JFrame implements KeyListener
 				remove(lbBackGround);
 				add(lbGolpes);
 				add(lbBackGround);
+				SwingUtilities.updateComponentTreeUI(this);
 				flagGolpes++;
 				break;
 			case 1:
 				remove(lbGolpes);
+				SwingUtilities.updateComponentTreeUI(this);
 				flagGolpes=0;
 				break;
 			}
